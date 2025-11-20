@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: webserver-simple
-        image: docker.io/kostiscodefresh/gitops-canary-app:v1.0
+        image: docker.io/kostiscodefresh/gitops-canary-app:v2.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -26,15 +26,14 @@ spec:
       stableService: rollout-canary-active
       trafficRouting:
         traefik:
-          weightedTraefikServiceName: traefik-service 
+          weightedTraefikServiceName: traefik-service
       steps:
       - setWeight: 30
       - pause: {duration: 2m}
       - setWeight: 60
       - pause: {duration: 2m}
       - setWeight: 100
-      - pause: {duration: 2m}    
+      - pause: {duration: 2m}
       analysis:
         templates:
         - templateName: simple-200-return
-       
